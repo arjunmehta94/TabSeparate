@@ -1,0 +1,21 @@
+{
+	"manifest_version" : 2,
+	"name" : "TabSeparate",
+	"description" : "Separate tabs according to form into new window",
+	"version" : "1.0",
+
+	"browser_action" : {
+		"default_icon" : "icon.png",
+		"default_popup" : "popup.html"
+	},
+	"content_scripts" : [ 
+	{
+		"matches" : ["https://*/*", "http://*/*"],
+		"js" : ["jquery-2.1.1.js"]
+	}
+	],
+	"permissions" : [
+		"activeTab", "tabs",
+		"https://*/*", "http://*/*"
+	]
+}
