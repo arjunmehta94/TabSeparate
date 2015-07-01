@@ -12,7 +12,7 @@ chrome.windows.getCurrent(function(win)
 			.attr("id", tabs[i].title)
 			.attr("url", tabs[i].url)
 			.val(tabs[i].title);
-			var s = "<label for=" + tabs[i].title + ">" + tabs[i].title + "</label>"; // create label item for text
+			var s = "<label for=" + tabs[i].title + ">" + tabs[i].title + "</label></br>"; // create label item for text
 			item.appendTo("#activeTabs"); // append form element
 			item.after(s);	// append label
 			
