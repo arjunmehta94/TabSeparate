@@ -2,6 +2,7 @@ chrome.windows.getCurrent(function(win)
 {
 	chrome.tabs.getAllInWindow(win.id, function(tabs)
 	{
+		console.log(tabs);
 		obj = {}; // title, tabId dictionary
 		for (var i = 0; i<tabs.length; i++)
 		{
@@ -33,6 +34,7 @@ chrome.windows.getCurrent(function(win)
 			$("#activeTabs input:checked").each(function(){ // separate tabs which are selected if button clicked 
 				selectedId.push(obj[$(this).attr("name")]); 
 			});
+			//setTimeout(function() {alert(selectedId);}, 3000);
 			chrome.tabs.remove(selectedId);
 
 		});
