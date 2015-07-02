@@ -28,6 +28,14 @@ chrome.windows.getCurrent(function(win)
 			chrome.windows.create({type: 'normal', url: selected}); // put selected tabs in new window
 			chrome.tabs.remove(selectedId); // delete selected tabs from current window
 		});
+		$("#btn-close").on('click', function(){
+			var selectedId = [];
+			$("#activeTabs input:checked").each(function(){ // separate tabs which are selected if button clicked 
+				selectedId.push(obj[$(this).attr("name")]); 
+			});
+			chrome.tabs.remove(selectedId);
+
+		});
 	});
 	
 
