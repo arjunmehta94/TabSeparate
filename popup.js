@@ -1,3 +1,4 @@
+
 chrome.windows.getCurrent(function(win)
 {
 	chrome.tabs.getAllInWindow(win.id, function(tabs)
@@ -29,19 +30,22 @@ chrome.windows.getCurrent(function(win)
 			chrome.windows.create({type: 'normal', url: selected}); // put selected tabs in new window
 			chrome.tabs.remove(selectedId); // delete selected tabs from current window
 		});
+		
 		$("#btn-close").on('click', function(){
 			var selectedId = [];
 			$("#activeTabs input:checked").each(function(){ // separate tabs which are selected if button clicked 
-				selectedId.push(obj[$(this).attr("name")]); 
+				selectedId.push(obj[$(this).attr("name")]);
+				setInterval(alert(selectedId.length), 5000); 
 			});
 			//setTimeout(function() {alert(selectedId);}, 3000);
 			chrome.tabs.remove(selectedId);
 
 		});
+		
 	});
 	
 
 });
-
+// console.log(selectedId);
 
 
