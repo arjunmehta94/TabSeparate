@@ -32,6 +32,7 @@ chrome.windows.getCurrent(function(win)
 		$("#btn-close").on('click', function(){
 			var selectedId = [];
 			$("#activeTabs input:checked").each(function(){ // separate tabs which are selected if button clicked 
+				//chrome.tabs.remove($(this).attr("name"));
 				selectedId.push(obj[$(this).attr("name")]); 
 			});
 			//setTimeout(function() {alert(selectedId);}, 3000);
