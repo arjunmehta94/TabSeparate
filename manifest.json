@@ -1,17 +1,19 @@
 {
 	"manifest_version" : 2,
-	"name" : "TabSeparate",
-	"description" : "Separate tabs according to form into new window",
+	"name" : "TabSeparate&Close",
+	"description" : "Separates tabs into new window and closes tabs according to form check inputs",
 	"version" : "1.0",
+	"icons": {"16":"icons/icon_016.png","32": "icons/icon_032.png","48": "icons/icon_048.png","128": "icons/icon_128.png"},
 
 	"browser_action" : {
-		"default_icon" : "icon.png",
+		"default_icon" : "icons/icon_016.png",
 		"default_popup" : "popup.html"
 	},
 	"content_scripts" : [ 
 	{
 		"matches" : ["https://*/*", "http://*/*"],
-		"js" : ["jquery-2.1.1.js"]
+		"js" : ["jquery-2.1.1.js"],
+		"css" : ["popup.css"]
 	}
 	],
 	"permissions" : [
