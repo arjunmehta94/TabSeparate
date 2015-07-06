@@ -11,24 +11,18 @@ chrome.windows.getCurrent(function(win)
 			var item = returnFormElement(tabs[i], i);
 			var s = generateLabelForFormElement(tabs[i]); // create label item for text
 			item.appendTo("#activeTabs"); // append form element
-			item.after(s);	// append label
+			//item.after(s);	// append label
 			
 		}
 
 		$("#btn-separate").on('click', separate); // if separate is clicked
-		
-		$("#btn-close").on('click', close);
-			
-
-		
+		$("#btn-close").on('click', close); // if closed is clicked
 	});
-	
-
 });
 // console.log(selectedId);
 
 function returnFormElement(tab, i){
-	var item = $("<input type='checkbox'/>")
+	var item = $("<div>" + tab.title + "</div>")
 			.attr("name", tab.title) // store form element, input type as a checkbox
 			.attr("id", tab.id)
 			.attr("url", tab.url)
