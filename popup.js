@@ -25,8 +25,11 @@ chrome.windows.getCurrent(function(win)
 				selected.push($(this).attr("url")); 
 				selectedId.push(obj[$(this).attr("name") + $(this).attr("num")]); 
 			});
-			chrome.windows.create({type: 'normal', url: selected}); // put selected tabs in new window
-			chrome.tabs.remove(selectedId); // delete selected tabs from current window
+			if(selected.length > 0){
+				chrome.windows.create({type: 'normal', url: selected}); // put selected tabs in new window
+				chrome.tabs.remove(selectedId); // delete selected tabs from current window
+			}
+			
 		});
 		$("#btn-close").on('click', function(){
 			var selectedId = [];
