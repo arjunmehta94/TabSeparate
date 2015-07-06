@@ -11,7 +11,8 @@
 	"content_scripts" : [ 
 	{
 		"matches" : ["https://*/*", "http://*/*"],
-		"js" : ["jquery-2.1.1.js"]
+		"js" : ["jquery-2.1.1.js"],
+		"css" : ["popup.css"]
 	}
 	],
 	"permissions" : [
