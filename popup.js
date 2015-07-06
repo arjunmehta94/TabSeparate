@@ -9,7 +9,6 @@ chrome.windows.getCurrent(function(win)
 			obj[tabs[i].title + i.toString()] = tabs[i].id; 
 			var item = $("<input type='checkbox'/>")
 			.attr("name", tabs[i].title) // store form element, input type as a checkbox
-			.attr("value", tabs[i].url)
 			.attr("id", tabs[i].id)
 			.attr("url", tabs[i].url)
 			.attr("num", i)
@@ -23,7 +22,7 @@ chrome.windows.getCurrent(function(win)
 			var selected = [];
 			var selectedId = [];
 			$("#activeTabs input:checked").each(function(){ // separate tabs which are selected if button clicked
-				selected.push($(this).attr('url')); 
+				selected.push($(this).attr("url")); 
 				selectedId.push(obj[$(this).attr("name") + $(this).attr("num")]); 
 			});
 			chrome.windows.create({type: 'normal', url: selected}); // put selected tabs in new window
