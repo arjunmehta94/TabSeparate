@@ -2,3 +2,7 @@ body{
 	/*background: blue;*/
 	font-size: 20px;
 }
+
+.tabs{
+	cursor: pointer;
+}
