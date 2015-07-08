@@ -1,4 +1,3 @@
-var xval = 0;
 winId = "";
 $.cookie("winId", winId);
 chrome.windows.getCurrent(function(win)
@@ -12,7 +11,7 @@ chrome.windows.getCurrent(function(win)
 				$(this).addClass("bg-success");
 
 				//trying to highlight the tabs which are selected 
-				
+
 				// highlightinfo = {tabs: [parseInt($(this).attr("id"))]}
 				// chrome.tabs.highlight(highlightinfo);
 			}
@@ -42,16 +41,14 @@ function returnFormElement(tab, i){
 }
 
 function separate(){
-	var selected = [];
 	var selectedId = [];
 	
 	$(".tabs").each(function(){
 		if($(this).prop("checked")){
-			selected.push($(this).attr("url")); 
 			selectedId.push(parseInt($(this).attr("id")));
 		}
 	});
-	if(selected.length > 0){
+	if(selectedId.length > 0){
 		
 		chrome.windows.create({type: 'normal'}, function(win){
 			var winId = $.cookie("winId").toString();
