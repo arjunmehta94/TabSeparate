@@ -10,6 +10,9 @@ chrome.windows.getCurrent(function(win)
 			if(!$(this).prop("checked")){
 				$(this).prop("checked", true);
 				$(this).addClass("bg-success");
+
+				//trying to highlight the tabs which are selected 
+				
 				// highlightinfo = {tabs: [parseInt($(this).attr("id"))]}
 				// chrome.tabs.highlight(highlightinfo);
 			}
@@ -59,11 +62,17 @@ function separate(){
 			result.splice(result.length - 1, 1);
 			var x = parseInt(result[result.length - 1]);
 			chrome.tabs.move(selectedId, {"windowId":x, "index":-1});
+
+			// trying to close first tab in new window which is default new tab
+
 			// chrome.tabs.getAllInWindow(x, function(tabs){
 			// 	chrome.tabs.remove(tabs[0].id);
 			// });
 		}); 
 	}
+
+	// trying to update UI dynamically when separated
+
 	//updateUI(tabs, obj);
 }
 function windowId(win)
@@ -80,6 +89,9 @@ function close(){
 		}
 	});
 	chrome.tabs.remove(selectedId);
+	
+	// trying to update UI dynamically when closed 
+
 	//updateUI(tabs, obj);
 }
 
