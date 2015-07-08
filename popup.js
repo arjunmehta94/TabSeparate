@@ -59,12 +59,9 @@ function separate(){
 			result.splice(result.length - 1, 1);
 			var x = parseInt(result[result.length - 1]);
 			chrome.tabs.move(selectedId, {"windowId":x, "index":-1});
-
-			// trying to close first tab in new window which is default new tab
-
-			// chrome.tabs.getAllInWindow(x, function(tabs){
-			// 	chrome.tabs.remove(tabs[0].id);
-			// });
+			chrome.tabs.getAllInWindow(x, function(tabs){
+				chrome.tabs.remove(tabs[0].id);
+			});
 		}); 
 	}
 
