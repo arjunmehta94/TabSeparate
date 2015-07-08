@@ -72,11 +72,7 @@ function separate(){
 
 	//updateUI(tabs, obj);
 }
-function windowId(win)
-{
-	console.log(win.id);
-	return win.id;
-}
+
 function close(){
 	var selectedId = [];
 
