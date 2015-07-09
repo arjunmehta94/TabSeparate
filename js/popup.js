@@ -12,7 +12,7 @@ chrome.windows.getCurrent(function(win)
 
 				//trying to highlight the tabs which are selected 
 
-				// highlightinfo = {tabs: [parseInt($(this).attr("id"))]}
+				// var highlightinfo = {windowId : win.id, tabs: [parseInt($(this).attr("num"))]}
 				// chrome.tabs.highlight(highlightinfo);
 			}
 			else{
@@ -24,13 +24,14 @@ chrome.windows.getCurrent(function(win)
 		
 		$("#btn-separate").on('click', separate); // if separate is clicked
 		$("#btn-close").on('click', close); // if closed is clicked
-		//updateUI(tabs, obj);
+		
 	});
 });
 
 function returnFormElement(tab, i){
-	var item = $("<div>" + (i+1).toString() + ": " + tab.title + "</div>")
-			.attr("name", tab.title) // store form element, input type as a checkbox
+	var img = "<img class = 'favIconUrl' src=" + tab.favIconUrl.toString() + "></img>"
+	var item = $("<div>" + img + " " + tab.title + "</div>")
+			.attr("name", tab.title) 
 			.attr("id", tab.id)
 			.attr("url", tab.url)
 			.attr("num", i)
@@ -50,7 +51,7 @@ function separate(){
 	});
 	if(selectedId.length > 0){
 		
-		chrome.windows.create({type: 'normal'}, function(win){
+		chrome.windows.create({type: 'normal', focused:false}, function(win){
 			var winId = $.cookie("winId").toString();
 			winId += win.id.toString() + " ";
 			$.cookie("winId", winId);
@@ -63,11 +64,16 @@ function separate(){
 				chrome.tabs.remove(tabs[0].id);
 			});
 		}); 
+		$("#activeTabs").empty();
+		// trying to update UI dynamically when separated
+		chrome.windows.getCurrent(function(win){
+			chrome.tabs.getAllInWindow(win.id, function(tabs){
+				updateUI(tabs, win.id);
+			})
+		});
 	}
-
-	// trying to update UI dynamically when separated
-
-	//updateUI(tabs, obj);
+	
+	
 }
 
 function close(){
@@ -78,7 +84,18 @@ function close(){
 			selectedId.push(parseInt($(this).attr("id"))); 
 		}
 	});
-	chrome.tabs.remove(selectedId);
+	if (selectedId.length > 0){
+		chrome.tabs.remove(selectedId);
+		$("#activeTabs").empty();
+
+		// trying to update UI dynamically when separated
+		chrome.windows.getCurrent(function(win){
+			chrome.tabs.getAllInWindow(win.id, function(tabs){
+				updateUI(tabs, win.id);
+			})
+		});
+	}
+	
 	
 	// trying to update UI dynamically when closed 
 
